@@ -1,0 +1,73 @@
+@mixin color($bg-color) {
+	@if lightness($bg-color) > 60 {
+		color: $text-color;
+	} @else {
+		color: $text-color-white;
+	}
+}
+
+
+@mixin bg-color($color) {
+	background-color: $color;
+	@include color($color);
+}
+
+
+@mixin absolute($top: 0, $left: 0) {
+	position: absolute;
+	top: $top;
+	left: $left;
+}
+
+@mixin flex($ai: center, $jc: center) {
+	display: flex;
+	align-items: $ai;
+	justify-content: $jc;
+}
+
+@mixin mq($size) {
+	@media screen and (min-width: $size) {
+		@content;
+	}
+}
+
+@mixin mq-max($size) {
+	@media screen and (max-width: $size) {
+		@content;
+	}
+}
+
+@mixin bg-image($url) {
+	background-image: url($url);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+
+@mixin hover($color: $text-color-white) {
+	position: relative;
+	transition: opacity $t-time $t-ease, color $t-time linear;
+
+	&::before {
+		content: '';
+		width: 90%;
+		height: 2px;
+		background-color: $color;
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		transform: translate(-50%, 2rem);
+		opacity: 0;
+		transition: all $t-time $t-ease;
+	}
+
+	&:hover {
+		opacity: 0.7;
+
+		&::before {
+			opacity: 1;
+			transform: translate(-50%, 0);
+		}
+	}
+}
+
