@@ -17,17 +17,24 @@
 	&__sticky {
 		width: 100%;
 		height: 100vh;
-		position: sticky;
+		position: relative;
 		top: 0;
 		left: 0;
 		overflow: hidden;
+		@supports (position: sticky) {
+			position: sticky;
+		}
 	}
 
 	&__image-wrapper {
 		width: 100%;
-		height: 130vh;
+		height: 100vh;
 		@include absolute;
 		transition: transform 100ms cubic-bezier(.4,.49,.8,.75);
+
+		@supports (position: sticky) {
+			height: 130vh;
+		}
 	}
 
 	&__image {
@@ -94,6 +101,10 @@
 		transform: translateX(-50%);
 		@include flex;
 		
+		@include mq(900px) {
+			top: 15%;
+			font-size: 2.5rem;
+		}
 		@include mq(1200px) {
 			font-size: 3.5rem;
 		}
@@ -111,13 +122,23 @@
 
 
 	&__text {
+		position: absolute;
+		bottom: 10%;
+		left: 50%;
 		width: 92vw;
-		height: auto;
-		position: relative;
-		z-index: 3;
-		padding-bottom: 24vh;
-		padding-left: 2rem;
-		margin: -48vw auto 0;
+		transform: translateX(-50%);
+		z-index: 5;
+		@supports(position: sticky) {
+			width: 92vw;
+			height: auto;
+			position: relative;
+			z-index: 3;
+			padding-bottom: 24vh;
+			padding-left: 2rem;
+			margin: -48vw auto 0;
+			left: auto;
+			transform: translateX(0);
+		}
 
 		@include mq(768px) {
 			padding-bottom: 15vh;
@@ -125,16 +146,23 @@
 			width: 90vw;
 		}
 
-		@include mq(1200px) {
-			width: 55vw;
+		@include mq(900px) {
+			width: 60vw;
 			// margin: 0 auto 0 0;
 			margin-left: auto;
 			margin-right: 2rem;
 		}
 
 		p {
-			font-size: 2.6rem;
-			font-weight: 500;
+			font-size: 1.4rem;
+			font-weight: 400;
+			@supports (position: sticky) {
+				font-size: 2.6rem;
+				font-weight: 500;
+			}
+			@include mq(900px) {
+				font-size: 4rem;
+			}
 			@include mq(1200px) {
 				font-size: 6rem;
 			}
@@ -144,6 +172,9 @@
 			display: inline-block;
 			width: 3rem;
 
+			@include mq(900px) {
+				width: 6rem;
+			}
 			@include mq(1200px) {
 				width: 8rem;
 			}

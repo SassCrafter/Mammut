@@ -12,12 +12,12 @@ const loco = new LocomotiveScroll({
 loco.on('scroll', (args) => {
     // Current srolled value
     const windowWidth = window.innerWidth;
-    if (windowWidth >= 768 && windowWidth <= 1024) return;
+    if (windowWidth >= 768 && windowWidth <= 899) return;
     let scrollValue = args.scroll.y;
     if (scrollValue >= 700) scrollValue = 700;
     let opacityVal = scaleValue(scrollValue, [0, 400], [0, 1]);
     const overlay = document.querySelector('.hero__overlay');
-    if (windowWidth >= 1200) {
+    if (windowWidth >= 900) {
         opacityVal = scaleValue(scrollValue, [0,800], [0, 1]);
         const imageWrapper = document.querySelector('.hero__image-wrapper');
         console.log(imageWrapper);
