@@ -4,17 +4,24 @@ import { scaleValue } from '../utils';
 
 
 const loco = new LocomotiveScroll({
-	el: document.querySelector('.main'),
-    smooth: true
+    el: document.querySelector('.main'),
+    offset: [0,0]
+    // smooth: true
 });
 
 loco.on('scroll', (args) => {
-	if(typeof args.currentElements['hero'] === 'object') {
-        let progress = args.currentElements['hero'].progress;
-        // Scale progress value in range [0, 1];
-        let opacityVal = scaleValue(progress, [0.4, 1], [0, 1]);
-        const overlay = document.querySelector('.hero__overlay');
-        // Make transition faster;
-        overlay.style.opacity = opacityVal * 3;
+    // Current srolled value
+    const windowWidth = window.innerWidth;
+    if (windowWidth >= 768 && windowWidth <= 1024) return;
+    let scrollValue = args.scroll.y;
+    if (scrollValue >= 700) scrollValue = 700;
+    let opacityVal = scaleValue(scrollValue, [0, 400], [0, 1]);
+    const overlay = document.querySelector('.hero__overlay');
+    if (windowWidth >= 1200) {
+        opacityVal = scaleValue(scrollValue, [0,800], [0, 1]);
+        const imageWrapper = document.querySelector('.hero__image-wrapper');
+        console.log(imageWrapper);
+        imageWrapper.style.transform = `translate3d(0, -${scaleValue(scrollValue, [0, 1200], [0, 200])}px, 0)`;  
     }
+    overlay.style.opacity = opacityVal;
 });

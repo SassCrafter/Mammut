@@ -1,0 +1,174 @@
+.menu-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    border: 4vw solid $bg-color;
+    border-bottom: 0;
+    z-index: 15;
+    transform: translate3d(0,-4vw,0) scaleX(1.088);
+    transition: transform .5s cubic-bezier(.16,1,.3,1),visibility .5s .5s;
+
+    &.open {
+        visibility: visible;
+        transform: translateZ(0) scaleX(1);
+        transition: transform .5s cubic-bezier(.16,1,.3,1),visibility .5s;
+    }
+}
+
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 200;
+
+
+    // Mobile menu content
+    &__content {
+        width: 100%;
+        height: 100%;
+        background-color: $bg-color;
+        padding: 1rem;
+        @include flex(center, flex-start);
+        flex-direction: column;
+        transform: scale(0);
+        transform-origin: center center;
+        transition: transform .5s cubic-bezier(.16,1,.3,1);
+        pointer-events: none;
+        visibility: hidden;
+
+        &.open {
+            transform: scale(1);
+            visibility: visible;
+            pointer-events: initial;
+        }
+    }
+
+    &__image {
+        width: 100%;
+        height: auto;
+        margin-bottom: 5rem;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &__item:not(:last-child) {
+        margin-bottom: .5rem;
+    }
+
+    &__link {
+        display: block;
+        padding: 0.5rem;
+        text-align: center;
+        color: $text-color;
+        font-size: 1.2rem;
+        font-weight: 500;
+        span {
+            display: block;
+
+            &:first-child {
+                font-size: 1.4rem;
+            }
+            &:nth-child(2) {
+                font-weight: 400;
+            }
+        }
+
+        &.active {
+            span:first-child {
+                color: $primary-color;
+            }
+        }
+    }
+
+
+    // Mobile menu Toggler
+    &__button {
+        width: 5rem;
+        height: 5rem;
+        border-radius: 50%;
+        background-color: $bg-color;
+        cursor: pointer;
+        position: absolute;
+        bottom: 5vh;
+        left: 1rem;
+        box-shadow: 0 3px 10px rgba(black, 0.4);
+        -webkit-tap-highlight-color: transparent;
+
+        // white circle on the cross when open
+        &::before {
+            content: '';
+            width: 0.9rem;
+            height: 0.9rem;
+            border-radius: 50%;
+            background-color: transparent;
+            @include absolute(52%, 50%);
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            transition: background-color $t-time $t-ease;
+        }
+
+        &.open {
+            &::before {
+                background-color: inherit;
+            }
+            .mobile-nav__lines {
+                &::before,
+                &::after {
+                    top: 0;
+                    background-color: $primary-color;
+                    // transition: background-color $t-time linear, top $t-time $t-ease, transform $t-time $t-ease $t-time;
+                }
+
+                &::before {
+                    transform: rotate(-45deg);
+                }
+                &::after {
+                    transform: rotate(45deg);
+                }
+            }
+        }
+
+        button {
+            @include flex;
+            width: 100%;
+            height: 100%;
+            outline: none;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+        }
+    }
+
+
+    &__lines {
+        width: 60%;
+        position: relative;
+        @include flex;
+
+        &::before,
+        &::after {
+            content: '';
+            width: 100%;
+            height: 3px;
+            background-color: $text-color;
+            position: absolute;
+            transition: all $t-time $t-ease;
+
+        }
+
+        &::before {
+            top: -4px;
+        }
+        &::after {
+            top: calc(100% + 2px);
+        }
+    }
+}
