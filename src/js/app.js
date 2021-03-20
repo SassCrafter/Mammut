@@ -1,6 +1,6 @@
 import '../sass/style.scss';
 import './vendors/locomotiveInit.js';
 
-import MobileNav from './components/MobileNav';
+import Nav from './components/Nav';
 
-const mobileNav = new MobileNav();
+const mainNav = new Nav();

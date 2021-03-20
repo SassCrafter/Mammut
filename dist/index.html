@@ -12,6 +12,9 @@
      <link rel="preconnect" href="https://fonts.gstatic.com">
 	 <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
+	 <!-- Font Awesome -->
+	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+
 	<link rel="stylesheet" href="./main.css">
 	<script src="./main.js" defer></script>
 </head>
@@ -19,40 +22,40 @@
 	
 	<div class="menu-backdrop"></div>
 	<!-- Mobile Navigation start -->
-	<nav class="mobile-nav">
-		<div class="mobile-nav__content">
-			<div class="mobile-nav__image">
+	<nav class="nav">
+		<div class="nav__content">
+			<div class="nav__image">
 				<img src="./images/nav/bg.jpg" srcset="./images/nav/bg.jpg 1x, ./images/nav/bg-2x.jpg 2x" alt="">
 			</div>
-			<ul class="mobile-nav__list">
-				<li class="mobile-nav__item">
-					<a href="#" class="mobile-nav__link active">
+			<ul class="nav__list">
+				<li class="nav__item">
+					<a href="#" class="nav__link active">
 						<span>Experience</span>
 						<span>Expedition Baikal</span>
 					</a>
 				</li>
-				<li class="mobile-nav__item">
-					<a href="#" class="mobile-nav__link">
+				<li class="nav__item">
+					<a href="#" class="nav__link">
 						<span>Technology</span>
 						<span>Gore-Tex Pro</span>
 					</a>
 				</li>
-				<li class="mobile-nav__item">
-					<a href="#" class="mobile-nav__link">
+				<li class="nav__item">
+					<a href="#" class="nav__link">
 						<span>Discover</span>
 						<span>Five Generations</span>
 					</a>
 				</li>
-				<li class="mobile-nav__item">
-					<a href="#" class="mobile-nav__link">
+				<li class="nav__item">
+					<a href="#" class="nav__link">
 						<span>Watch</span>
 						<span>The full documentary</span>
 					</a>
 				</li>
 			</ul>
-			<div class="mobile-nav__button">
+			<div class="nav__button">
 			<button>
-				<span class="mobile-nav__lines"></span>
+				<span class="nav__lines"></span>
 			</button>
 		</div>
 		</div>
@@ -89,7 +92,7 @@
 				</div>
 			</div>
 			<div class="hero__text">
-				<div class="container">
+				<div>
 					<p>Dani Arnold
 					<span>
 						<img src="./images/sections/hero/text-face.webp" alt="">
@@ -101,7 +104,60 @@
 		</section>
 		<!-- Hero end -->
 
-		<section class="section"></section>
+		<!-- Intro start -->
+		<section class="section intro">
+			<div class="container">
+				<figure class="twoImages">
+					<div class="twoImages__container">
+						<div class="twoImages__block">
+							<button class="twoImages__img">
+								<picture>
+									<img src="./images/sections/intro/man-backpack.webp" alt="">
+								</picture>
+							</button>
+							<div class="twoImages__icon">
+								<i class="fas fa-shopping-bag"></i>
+							</div>
+						</div>
+						<div class="twoImages__block">
+							<button class="twoImages__img">
+								<video src="./videos/intro/ice.mp4" loop autoplay muted ></video>
+							</button>
+						</div>
+					</div>
+					<figcaption class="twoImages__caption">
+						The thick ice covering the deepest lake on earth offers a mesmerizing, crystal-clear view into its depths.
+					</figcaption>
+				</figure>
+			</div>
+		</section>
+		<!-- Intro end -->
+
+		<!-- Info start -->
+		<section class="section info">
+			<div class="container">
+				<div class="info__container">
+					<div class="info__item info__name">
+						<h3>Dani <span>Arnold</span></h3>
+					</div>
+					<div class="info__item info__facts">
+						<div class="info__fact">
+							<small>Pro Team Mountaineering</small>
+							<h4>One of the top Swiss speed climbers</h4>
+						</div>
+						<div class="info__fact">
+							<small>Date of Birth</small>
+							<h4>22 FEB 1984</h4>
+						</div>
+						<div class="info__fact">
+							<small>At Mammut since</small>
+							<h4>2011</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- Info end -->
 	</main>
 </body>
 </html>

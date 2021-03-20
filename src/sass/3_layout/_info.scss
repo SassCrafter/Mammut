@@ -1,0 +1,20 @@
+.info {
+	&__container {
+		@include flex(flex-start);
+	}
+
+	&__item {
+		width: 50%;
+	}
+
+	&__name {
+		h3 {
+			font-size: 3rem;
+			text-transform: uppercase;
+			font-weight: 500;
+			span {	
+				display: block;
+			}
+		}
+	}
+}
