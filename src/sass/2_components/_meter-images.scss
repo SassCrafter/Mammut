@@ -1,21 +1,63 @@
 .meterImages {
 	width: 100%;
+	height: auto;
 	// height: 100vh;
 	position: relative;
 
 	&__container {
-		height: 100vh;
+		height: 105vh;
+		margin-bottom: 1rem;
 	}
 
 	&__meter {
+		width: 20rem;
 		height: auto;
 		@include flex;
-		@include absolute(70%, 50%);
+		@include absolute(60%, 50%);
 		transform: translateX(-50%);
+
+		@include mq(900px) {
+			left: auto;
+			top: 10%;
+			right: 10%;
+			transform: translateX(0);
+			transition: transform 200ms linear;
+		}
+	}
+
+	&__number {
+		font-size: 1.5rem;
+		position: absolute;
+		bottom: -1.5em;
+		left: .5em;
+		transform: rotate(-50deg);
+
+
+		&:nth-child(3) {
+			left: auto;
+			right: .5em;
+			transform: rotate(50deg);
+		}
+	}
+
+	&__degree {
+		position: absolute;
+		margin-bottom: 0;
+		font-size: 4.5rem;
+		font-weight: 500;
+
+		sup {
+			font-size: 1.4rem;
+			vertical-align: bottom;
+		}
 	}
 
 	&__icon {
-		width: 15rem;
+		width: 100%;
 		height: auto;
+	}
+
+	&__caption {
+		text-align: center;
 	}
 }

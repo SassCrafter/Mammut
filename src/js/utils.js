@@ -29,3 +29,6 @@ export function removeClasses(els, classNames) {
 		});
 	});
 }
+
+export const getWindowWidth = () => window.innerWidth;
+export const getWindowHeight = () => window.innerHeight;

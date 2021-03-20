@@ -150,10 +150,35 @@
         }
     }
 
-    &__item:not(:last-child) {
-        margin-bottom: .5rem;
+    &__item {
+        position: relative;
+
+        &::before {
+            content: '';
+            display: none;
+            width: 95%;
+            height: 2px;
+            background-color: $gray-color;
+            @include absolute(-2px);
+        }
+
+        &.active::before {
+            background-color: $primary-color;
+        }
+
         @include mq(900px) {
-            margin: 0;
+            flex: 1;
+            &::before {
+                display: block;
+            }
+        }
+
+
+        &:not(:last-child) {
+            margin-bottom: .5rem;
+            @include mq(900px) {
+                margin: 0;
+            }
         }
     }
 
