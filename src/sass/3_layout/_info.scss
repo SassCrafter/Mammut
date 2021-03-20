@@ -15,6 +15,49 @@
 			span {	
 				display: block;
 			}
+
+			@include mq(768px) {
+				font-size: 2.5rem;
+				span {
+					display: inline-block;
+				}
+			}
+		}
+
+		@include mq(900px) {
+			width: 25%;
+		}
+	}
+
+	&__facts {
+		@include mq(900px) {
+			@include flex(flex-start, space-between);
+			width: 75%;
+		}
+	}
+
+	small {
+		display: inline-block;
+		font-size: 1.2rem;
+		margin-bottom: 1rem;
+
+		@inculde mq(768px) {
+			font-size: 1.4rem;
+		}
+		@include mq(900px) {
+			font-size: 1.6rem;
+		}
+	}
+
+	h4 {
+		font-size: 1.6rem;
+		font-weight: 500;
+
+		@include mq(768px) {
+			font-size: 1.8rem;
+		}
+		@include mq(900px) {
+			font-size: 2rem;
 		}
 	}
 }
