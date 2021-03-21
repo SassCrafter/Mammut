@@ -160,6 +160,7 @@
             height: 2px;
             background-color: $gray-color;
             @include absolute(-2px);
+            transition: background-color $t-time linear;
         }
 
         &.active::before {
@@ -170,6 +171,10 @@
             flex: 1;
             &::before {
                 display: block;
+            }
+
+            &:not(.active):hover::before {
+                background-color: darken($gray-color, 15%);
             }
         }
 

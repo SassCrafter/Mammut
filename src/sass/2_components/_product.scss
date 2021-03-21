@@ -1,0 +1,65 @@
+.product {
+	height: 100vh;
+	// overflow: hidden;
+	position: relative;
+
+	&__container {
+		height: 3000px;
+	}
+	&__content {
+		@include absolute;
+		width: 100%;
+		height: 100%;
+		padding-top: 4rem;
+		@include flexColumn;
+	}
+
+	&__image {
+		width: 60%;
+		margin-bottom: 2rem;
+	}
+
+	&__text {
+		font-size: 3rem;
+		color: $text-color;
+		font-weight: 500;
+		padding: 2rem;
+
+		p {
+			font-size: inherit;
+			color: inherit;
+			font-weight: inherit;
+		}
+
+		a {
+			font-size: inherit;
+			color: $primary-color;
+			transition: color $t-time linear;
+			font-weight: inherit;
+
+			&:hover {
+				color: $secondary-color;
+			}
+
+			i {
+				display: inline-block;
+				transform: rotate(45deg);
+			}
+		}
+	}
+
+	// Sticky
+	&__sticky {
+		width: 100%;
+		height: 100vh;
+		position: sticky;
+		top: 0;
+		left: 0;
+		overflow: hidden;
+		pointer-events: none;
+	}
+	&__sticky-img {
+		@include flex;
+		@include absolute;
+	}
+}

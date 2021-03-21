@@ -27,7 +27,7 @@ function meterScroll(args) {
         const windowWidth = getWindowWidth();
         const windowHeight = getWindowHeight();
         if (windowWidth <= 768) return;
-        const translateVal = scaleValue(progress, [0, 1], [0, windowHeight - 250]);
+        const translateVal = scaleValue(progress, [0, 1], [-50, windowHeight - 250]);
         meterEl.style.transform = `translateY(${translateVal}px)`;
         console.log(translateVal);
 
