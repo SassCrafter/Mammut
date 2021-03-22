@@ -1,5 +1,6 @@
 .product {
-	height: 100vh;
+	width: 100%;
+	padding-bottom: 0;
 	// overflow: hidden;
 	position: relative;
 
@@ -57,9 +58,35 @@
 		left: 0;
 		overflow: hidden;
 		pointer-events: none;
+
+		&-list {
+			width: 100%;
+			height: 100%;
+			@include absolute;
+		}
+
+		&-item {
+			width: 100%;
+			@include absolute(50%, 50%);
+			transform: translate(-50%, -50%);
+			text-align: center;
+			color: $text-color-white;
+			opacity: 0;
+		}
+
+		&-text {
+			font-size: 3rem;
+		}
 	}
 	&__sticky-img {
-		@include flex;
+		height: 100%;
+		@include flex(flex-start);
 		@include absolute;
+		overflow: hidden;
+		transition: background-color $t-time linear;
+
+		.product__image {
+			
+		}
 	}
 }

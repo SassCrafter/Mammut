@@ -10,6 +10,13 @@
 	width: 100%;
 	padding: 3rem 0;
 
+	@include mq(1200px) {
+		padding: 5rem 0;
+	}
+	@include mq(1400px) {
+		padding: 8rem 0;
+	}
+
 	&--full {
 		height: 100vh;
 	}
@@ -24,4 +31,13 @@
 		height: 100%;
 		object-fit: cover;
 	}
+}
+
+.bg-dark {
+	background-color: #23293c;
+}
+
+// Text
+.text-primary {
+	color: $primary-color;
 }

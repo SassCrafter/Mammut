@@ -1,6 +1,7 @@
 import LocomotiveScroll from 'locomotive-scroll';
 import '../../../node_modules/locomotive-scroll/dist/locomotive-scroll.css';
-import { scaleValue, getWindowWidth, getWindowHeight } from '../utils';
+import { scaleValue, getWindowWidth, getWindowHeight, addClass, removeClass } from '../utils';
+import { productAnim, setVals } from '../animations';
 
 
 function heroScroll(args) {
@@ -26,10 +27,64 @@ function meterScroll(args) {
         let progress = args.currentElements['meter'].progress;
         const windowWidth = getWindowWidth();
         const windowHeight = getWindowHeight();
+        let maxTranslate = windowHeight - 250;
         if (windowWidth <= 768) return;
-        const translateVal = scaleValue(progress, [0, 1], [-50, windowHeight - 250]);
+        if (windowWidth >= 1200) maxTranslate = windowHeight - 400;
+        const translateVal = scaleValue(progress, [0, 1], [-50, maxTranslate]);
         meterEl.style.transform = `translateY(${translateVal}px)`;
         console.log(translateVal);
+
+    }
+}
+
+function productScroll(args) {
+    if(typeof args.currentElements['product'] === 'object') {
+
+        const { progress, el} = args.currentElements['product'];
+        const imgEls = el.querySelectorAll('.product__image');
+        const stickyImg = el.querySelector('.product__sticky-img');
+        const stickyListItems = el.querySelectorAll('.product__sticky-item');
+        if (el.classList.contains('is-inview')) {
+            if (progress <= 0.04) {
+                imgEls[0].style.opacity = 1;
+                // imgEls[1].style.transform = 'translateZ(0,0,0) scale(1)';
+                setVals(imgEls[1], {scale: 1, y: 0, opacity: 1});
+                return;
+            }
+            if (progress > 0.04 && progress < 0.1) {
+                imgEls[0].style.opacity = 0;
+                productAnim(imgEls[1], {opacity: scaleValue(progress, [0.05, 0.1], [1, 0])});
+            } 
+            if (progress > 0.25 && progress < 0.75) {
+                productAnim(imgEls[1], {y: '50%', scale: scaleValue(progress, [0.25, 0.75], [0.4, 2]), opacity: scaleValue(progress, [0.25, 0.35], [0, 1])})
+                addClass(stickyImg, 'bg-dark');
+            } else if (progress < 0.25 && progress > 0.1) {
+                setVals(imgEls[1], {y: 0, scale: 1});
+                removeClass(stickyImg, 'bg-dark')
+            }
+
+            stickyListItems.forEach(item => {
+                const visibleAt = item.dataset.visibleAt?.split(',');
+                let secondVal = visibleAt[1];
+                if (+visibleAt[1] === 1) {
+                    secondVal = 0.8;
+                }
+                console.log('SecondVal: ', secondVal);
+                if (progress >= visibleAt[0] && progress < visibleAt[1]) {
+                    productAnim(item, {opacity: scaleValue(progress, [visibleAt[0], secondVal], [0,1])})
+                } else {
+                    productAnim(item, {opacity: 0})
+                }
+            })
+
+            // if (progress > 0.35 && progress)
+
+            // if (progress < 0.15) {
+            //     imgEls[0].style.opacity = 1;
+            //     imgEls[1].style.transform = 'translateZ(0,0,0) scale(1)';
+            // }
+        }
+        console.log('Jacket: ', progress);
 
     }
 }
@@ -41,6 +96,9 @@ function scrollHandler(args) {
 
     // Meter
     meterScroll(args);
+
+    // Product
+    productScroll(args);
 }
 
 const loco = new LocomotiveScroll({

@@ -1,5 +1,6 @@
 .info {
 	&__container {
+		padding: 4rem 0;
 		@include flex(flex-start);
 	}
 
@@ -22,6 +23,9 @@
 					display: inline-block;
 				}
 			}
+			@include mq(1200px) {
+				font-size: 3.5rem;
+			}
 		}
 
 		@include mq(900px) {
@@ -36,12 +40,14 @@
 		}
 	}
 
+	
+
 	small {
 		display: inline-block;
 		font-size: 1.2rem;
 		margin-bottom: 1rem;
 
-		@inculde mq(768px) {
+		@include mq(768px) {
 			font-size: 1.4rem;
 		}
 		@include mq(900px) {
@@ -58,6 +64,9 @@
 		}
 		@include mq(900px) {
 			font-size: 2rem;
+		}
+		@include mq(1200px) {
+			font-size: 2.2rem;
 		}
 	}
 }
