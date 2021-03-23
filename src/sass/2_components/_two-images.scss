@@ -53,6 +53,7 @@
 		transition-timing-function: linear;
 		transition-duration: $t-time-2;
 
+
 		&:hover {
 			// background-color: $primary-color;
 			@include bg-color($white-color);

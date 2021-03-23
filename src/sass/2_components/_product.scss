@@ -1,6 +1,6 @@
 .product {
 	width: 100%;
-	padding-bottom: 0;
+	padding: 0;
 	// overflow: hidden;
 	position: relative;
 
@@ -13,11 +13,25 @@
 		height: 100%;
 		padding-top: 4rem;
 		@include flexColumn;
+
+		@include mq(900px) {
+			flex-direction: row;
+			align-items: flex-start;
+			justify-content: center;
+		}
+		@include mq($max-width) {
+			left: 50%;
+			transform: translateX(-50%);
+		}
 	}
 
 	&__image {
 		width: 60%;
 		margin-bottom: 2rem;
+
+		@include mq(900px) {
+			width: 30%;
+		}
 	}
 
 	&__text {
@@ -25,6 +39,16 @@
 		color: $text-color;
 		font-weight: 500;
 		padding: 2rem;
+
+		@include mq(900px) {
+			font-size: 4rem;
+			width: 70%;
+			padding-top: 5rem;
+		}
+
+		@include mq(1200px) {
+			font-size: 5rem;
+		}
 
 		p {
 			font-size: inherit;
@@ -59,14 +83,29 @@
 		overflow: hidden;
 		pointer-events: none;
 
+		&-bg {
+			@include absolute;
+			width: 100vw !important;
+			height: 100%;
+			transition: background-color $t-time linear;
+			pointer-events: none;
+		}
+
+
 		&-list {
 			width: 100%;
 			height: 100%;
 			@include absolute;
+
+			@include mq($max-width) {
+				left: 50%;
+				transform: translateX(-50%);
+			}
 		}
 
 		&-item {
 			width: 100%;
+			max-width: 140rem;
 			@include absolute(50%, 50%);
 			transform: translate(-50%, -50%);
 			text-align: center;
@@ -76,17 +115,34 @@
 
 		&-text {
 			font-size: 3rem;
+
+			@include mq(768px) {
+				font-size: 4rem;
+			}
+			@include mq(900px) {
+				font-size: 6rem;
+			}
+			@include mq(1200px) {
+				font-size: 8rem;
+			}
 		}
 	}
 	&__sticky-img {
+		width: 100%;
 		height: 100%;
 		@include flex(flex-start);
 		@include absolute;
 		overflow: hidden;
 		transition: background-color $t-time linear;
+		padding-top: 5rem;
 
-		.product__image {
-			
+		@include mq(900px) {
+			justify-content: flex-start;
 		}
+		@include mq($max-width) {
+			left: 50%;
+			transform: translateX(-50%);
+		}
+		
 	}
 }

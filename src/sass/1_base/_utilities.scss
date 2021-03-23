@@ -1,7 +1,16 @@
 
+.opacity-desktop {
+	@include mq(900px) {
+		opacity: 0 !important;
+		visibility: hidden;
+		pointer-events: none;
+	}
+}
+
+
 .container {
 	width: 100%;
-	max-width: 1400px;
+	max-width: $max-width;
 	margin: 0 auto;
 	padding: 0 2rem;
 	overflow: hidden;

@@ -74,7 +74,7 @@
 							<img src="./images/sections/hero/bg.webp" width="2798" height="2265" alt="">
 						</div>
 					</div>
-					<div class="hero__image">
+					<div class="hero__image hero__man">
 						<div class="picture">
 							<img src="./images/sections/hero/man.webp" width="2798" height="2265" alt="">
 						</div>
@@ -182,8 +182,8 @@
 		<!-- Jacket start -->
 		<section class="section product jacket" data-scroll data-scroll-id="product" data-scroll-section data-scroll-offset="100%">
 			<div class="product__container">
-				<div class="product__content">
-					<aside class="product__image">
+				<div class="product__content container">
+					<aside class="product__image hide-desktop">
 						<picture>
 							<img src="./images/sections/products/jacket.webp" alt="">
 						</picture>
@@ -195,7 +195,8 @@
 					</div>
 				</div>
 				<div class="product__sticky">
-					<div class="product__sticky-img">
+					<div class="product__sticky-bg"></div>
+					<div class="product__sticky-img container">
 						<div class="product__image sticky-img">
 							<picture>
 								<source srcset="./images/sections/products/jacket-big.webp" media="(min-width:900px)">
@@ -203,7 +204,7 @@
 							</picture>
 						</div>
 					</div>
-					<ul class="product__sticky-list">
+					<ul class="product__sticky-list container">
 						<li class="product__sticky-item" data-visible-at="0.25, 0.45">
 							<p class="product__sticky-text">
 								Ultra-light <span class="text-primary">Pertex® Quantum Pro</span>
@@ -220,115 +221,38 @@
 		</section>
 		<!-- Jacket end -->
 
-
-		<!-- Intro start -->
-		<section class="section intro">
-			<div class="container">
-				<figure class="twoImages">
-					<div class="twoImages__container">
-						<div class="twoImages__block">
-							<button class="twoImages__img">
-								<picture>
-									<img src="./images/sections/intro/man-backpack.webp" alt="">
-								</picture>
-							</button>
-							<div class="twoImages__icon">
-								<i class="fas fa-shopping-bag"></i>
-							</div>
-						</div>
-						<div class="twoImages__block">
-							<button class="twoImages__img">
-								<video src="./videos/intro/ice.mp4" loop autoplay muted ></video>
-							</button>
+		<!-- Challenge-->
+		<section class="section challenge bg-dark">
+			<div class="challenge__container">
+				<div class="twoImages__container challenge__item challenge__bg">
+					<div class="twoImages__block challenge__bg-img">
+						<img src="./images/sections/challenge/bg.webp" alt="">
+						<div class="twoImages__icon">
+							<i class="fas fa-shopping-bag"></i>
 						</div>
 					</div>
-					<figcaption class="twoImages__caption">
-						The thick ice covering the deepest lake on earth offers a mesmerizing, crystal-clear view into its depths.
-					</figcaption>
-				</figure>
-			</div>
-		</section>
-		<!-- Intro end -->
-
-		<!-- Info start -->
-		<section class="section info">
-			<div class="container">
-				<div class="info__container">
-					<div class="info__item info__name">
-						<h3>Dani <span>Arnold</span></h3>
-					</div>
-					<div class="info__item info__facts">
-						<div class="info__fact">
-							<small>Pro Team Mountaineering</small>
-							<h4>One of the top Swiss speed climbers</h4>
-						</div>
-						<div class="info__fact">
-							<small>Date of Birth</small>
-							<h4>22 FEB 1984</h4>
-						</div>
-						<div class="info__fact">
-							<small>At Mammut since</small>
-							<h4>2011</h4>
-						</div>
+				</div>
+				<div class="challenge__item challenge__video">
+					<div class="challenge__video-container">
+						<video src="./videos/challenge/challenge.mp4" muted loop autoplay></video>
 					</div>
 				</div>
 			</div>
 		</section>
-		<!-- Info end -->
-		<!-- Intro start -->
-		<section class="section intro">
-			<div class="container">
-				<figure class="twoImages">
-					<div class="twoImages__container">
-						<div class="twoImages__block">
-							<button class="twoImages__img">
-								<picture>
-									<img src="./images/sections/intro/man-backpack.webp" alt="">
-								</picture>
-							</button>
-							<div class="twoImages__icon">
-								<i class="fas fa-shopping-bag"></i>
-							</div>
-						</div>
-						<div class="twoImages__block">
-							<button class="twoImages__img">
-								<video src="./videos/intro/ice.mp4" loop autoplay muted ></video>
-							</button>
-						</div>
-					</div>
-					<figcaption class="twoImages__caption">
-						The thick ice covering the deepest lake on earth offers a mesmerizing, crystal-clear view into its depths.
-					</figcaption>
-				</figure>
-			</div>
-		</section>
-		<!-- Intro end -->
+		<!-- Challenge -->
 
-		<!-- Info start -->
-		<section class="section info">
-			<div class="container">
-				<div class="info__container">
-					<div class="info__item info__name">
-						<h3>Dani <span>Arnold</span></h3>
-					</div>
-					<div class="info__item info__facts">
-						<div class="info__fact">
-							<small>Pro Team Mountaineering</small>
-							<h4>One of the top Swiss speed climbers</h4>
-						</div>
-						<div class="info__fact">
-							<small>Date of Birth</small>
-							<h4>22 FEB 1984</h4>
-						</div>
-						<div class="info__fact">
-							<small>At Mammut since</small>
-							<h4>2011</h4>
-						</div>
-					</div>
+		<!-- Quote start -->
+		<section class="section quote">
+			<div class="container quote__container">
+				<div class="text">
+					<p class="quote__text">Temperatures are extreme and documentation of the area is scant at best, making it difficult to find climbing sites. Finally, the first challenge: a cave. Or rather an art installation made of ice. This calls for an outfit change.</p>
 				</div>
 			</div>
 		</section>
-		<!-- Info end -->
+		<!-- Quote end -->
+
+
+		
 
 	</main>
 </body>

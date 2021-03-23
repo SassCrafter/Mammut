@@ -16,14 +16,18 @@
 		@include absolute(60%, 50%);
 		transform: translateX(-50%);
 
+
+		@include mq(768px) {
+			width: 25rem;
+			top: 70%;
+		}
 		@include mq(900px) {
 			left: auto;
 			top: 10%;
 			right: 10%;
 			transform: translateX(0);
-			transition: transform 200ms linear;
+			// transition: transform 200ms linear;
 		}
-
 		@include mq(1200px) {
 			width: 30rem;
 		}
