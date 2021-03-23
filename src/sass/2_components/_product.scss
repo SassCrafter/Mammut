@@ -105,12 +105,19 @@
 
 		&-item {
 			width: 100%;
-			max-width: 140rem;
 			@include absolute(50%, 50%);
 			transform: translate(-50%, -50%);
 			text-align: center;
 			color: $text-color-white;
 			opacity: 0;
+
+			@include mq(900px) {
+				max-width: 65rem;
+			};
+			@include mq(1200px) {
+				max-width: 140rem;
+			}
+
 		}
 
 		&-text {
@@ -143,6 +150,6 @@
 			left: 50%;
 			transform: translateX(-50%);
 		}
-		
+
 	}
 }

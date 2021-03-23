@@ -7,9 +7,19 @@
 
         @include mq(900px) {
             flex-direction: row-reverse;
-            align-items: flex-start;
+            align-items: stretch;
             justify-content: center;
         }
+    }
+
+    .twoImages__block {
+      margin: 0;
+    }
+
+    &__bg {
+      @include mq(900px) {
+        width: 65%
+      }
     }
 
     &__bg-img {
@@ -17,11 +27,11 @@
     }
 
     &__video {
-        padding: 2rem;
+        padding: 2rem 0;
         width: 100%;
 
         @include mq(900px) {
-            width: 45%;
+            width: 35%;
             padding: 4rem;
         }
 
