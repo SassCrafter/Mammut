@@ -1,8 +1,11 @@
 import LocomotiveScroll from 'locomotive-scroll';
 import '../../../node_modules/locomotive-scroll/dist/locomotive-scroll.css';
+import { slider } from '../app';
 import { scaleValue, getWindowWidth, getWindowHeight, addClass, removeClass } from '../utils';
 import { animation, setVals } from '../animations';
 import { windowWidth, windowHeight } from '../app';
+
+
 
 
 function heroScroll(args) {
@@ -39,9 +42,11 @@ function meterScroll(args) {
 }
 
 function productScroll(args) {
-    if(typeof args.currentElements['product'] === 'object') {
+    if(typeof args.currentElements['jacket'] === 'object' ||
+       typeof args.currentElements['norwand'] === 'object' ) {
 
-        const { progress, el} = args.currentElements['product'];
+        console.log(Object.keys(args.currentElements)[0]);
+        const { progress, el} = args.currentElements[Object.keys(args.currentElements)[0]];
         const imgEls = el.querySelectorAll('.product__image');
         const stickyImg = el.querySelector('.product__sticky-img');
         const stickyBg = el.querySelector('.product__sticky-bg');
@@ -123,10 +128,7 @@ function scaleImg(args) {
 function scrollSlider(args) {
   if (typeof args.currentElements['scrollSlider'] === 'object') {
     const progress = args.currentElements['scrollSlider'].progress;
-    const numOfSlides = document.querySelectorAll('.scrollSlider__slide').length;
-    const slideWidth = numOfSlides[0].offsetWidth + 20;
-    const maxTranslate = numOfSlides * slideWidth;
-    animation('.scrollSlider__container', {x: scaleValue(progress, [0, 1], [0, maxTranslate])})
+    slider.updateSlidePos(progress);
   }
 }
 
@@ -143,6 +145,9 @@ function scrollHandler(args) {
 
     // Scale image
     scaleImg(args);
+
+    // Scroll slider
+    scrollSlider(args);
 }
 
 const loco = new LocomotiveScroll({
