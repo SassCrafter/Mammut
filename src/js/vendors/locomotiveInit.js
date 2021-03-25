@@ -1,7 +1,7 @@
 import LocomotiveScroll from 'locomotive-scroll';
 import '../../../node_modules/locomotive-scroll/dist/locomotive-scroll.css';
 import { slider } from '../app';
-import { scaleValue, getWindowWidth, getWindowHeight, addClass, removeClass } from '../utils';
+import { scaleValue, getWindowWidth, getWindowHeight, addClasses, removeClasses } from '../utils';
 import { animation, setVals } from '../animations';
 import { windowWidth, windowHeight } from '../app';
 
@@ -41,12 +41,11 @@ function meterScroll(args) {
     }
 }
 
-function productScroll(args) {
-    if(typeof args.currentElements['jacket'] === 'object' ||
-       typeof args.currentElements['norwand'] === 'object' ) {
+function productScroll(args, id) {
+    if(typeof args.currentElements[id] === 'object' ) {
 
-        console.log(Object.keys(args.currentElements)[0]);
-        const { progress, el} = args.currentElements[Object.keys(args.currentElements)[0]];
+        const { progress, el} = args.currentElements[id];
+        const bgClass = el.dataset.bgClass || '';
         const imgEls = el.querySelectorAll('.product__image');
         const stickyImg = el.querySelector('.product__sticky-img');
         const stickyBg = el.querySelector('.product__sticky-bg');
@@ -65,10 +64,13 @@ function productScroll(args) {
             }
             if (progress > 0.25 && progress < 0.75) {
                 animation(imgEls[1], {y: '50%', scale: scaleValue(progress, [0.25, 0.75], [0.4, 2]), opacity: scaleValue(progress, [0.25, 0.35], [0, 1])})
-                addClass(stickyBg, 'bg-dark');
+                addClasses([stickyBg], `${bgClass} scrolled`);
+                if (bgClass === 'video-bg') {
+                    stickyBg.querySelector('video')?.play();
+                }
             } else if (progress < 0.25 && progress > 0.1) {
                 setVals(imgEls[1], {y: 0, scale: 1});
-                removeClass(stickyBg, 'bg-dark')
+                removeClasses([stickyBg], `${bgClass} scrolled`);
             }
 
             stickyListItems.forEach(item => {
@@ -87,14 +89,17 @@ function productScroll(args) {
         } else {
             if (progress > 0.03 && progress < 0.2) {
                 imgEls[0].style.opacity = 0;
-                animation(imgEls[1], {x: `${scaleValue(progress, [0.04, 0.2], [0, 122])}%`, y: `${scaleValue(progress, [0.04, 0.2], [0, 50])}%`});
+                animation(imgEls[1], {x: `${scaleValue(progress, [0.04, 0.2], [0, windowWidth / 2 - imgEls[1].offsetWidth])}px`, y: `${scaleValue(progress, [0.04, 0.2], [0, 50])}%`});
             }
 
             if (progress >= 0.2 && progress < 0.5) {
-                addClass(stickyBg, 'bg-dark');
+                addClasses([stickyBg], `${bgClass} scrolled`);
+                if (bgClass === 'video-bg') {
+                    stickyBg.querySelector('video')?.play();
+                }
                 animation(imgEls[1], {scale: scaleValue(progress, [0.18, .5], [1, 2])});
             } else if (progress < 0.2) {
-                removeClass(stickyBg, 'bg-dark');
+                removeClasses([stickyBg], `${bgClass} scrolled`);
             }
 
             stickyListItems.forEach(item => {
@@ -109,16 +114,20 @@ function productScroll(args) {
                     animation(item, {opacity: 0})
                 }
             })
+
+            if (progress > 0.5) {
+                animation(imgEls[1], {x: `${scaleValue(progress, [0.04, 0.2], [0, windowWidth / 2 - imgEls[1].offsetWidth])}px`})
+            }
         }
 
     }
 }
 
 
-function scaleImg(args) {
-  if (typeof args.currentElements['scaleImg'] === 'object') {
-    const progress = args.currentElements['scaleImg'].progress;
-    const animateEl = args.currentElements['scaleImg'].el?.querySelector('img');
+function scaleImg(args, id) {
+  if (typeof args.currentElements[id] === 'object') {
+    const progress = args.currentElements[id].progress;
+    const animateEl = args.currentElements[id].el?.querySelector('img');
     const scale = scaleValue(progress, [0,1], [1, 1.2]);
     animation(animateEl, {scale: scale});
   }
@@ -128,7 +137,7 @@ function scaleImg(args) {
 function scrollSlider(args) {
   if (typeof args.currentElements['scrollSlider'] === 'object') {
     const progress = args.currentElements['scrollSlider'].progress;
-    slider.updateSlidePos(progress);
+    slider.updateSlidePosition(progress);
   }
 }
 
@@ -141,13 +150,19 @@ function scrollHandler(args) {
     meterScroll(args);
 
     // Product
-    productScroll(args);
+    productScroll(args, 'jacket');
 
     // Scale image
-    scaleImg(args);
+    scaleImg(args, 'scaleImg-mounts');
 
     // Scroll slider
     scrollSlider(args);
+
+    //  Mount scale img
+    scaleImg(args, 'scaleImg-mount');
+    
+    // Norwand product
+    productScroll(args, 'norwand');
 }
 
 const loco = new LocomotiveScroll({
